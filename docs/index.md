@@ -5,7 +5,7 @@ logo: /img/icon/annyue-logo-64x64.ico
 hero:
   name: 深圳市安跃企业服务
   text: 
-  tagline: 专注于规范中小微企业的财务核算、税务合规，通过业财融合达成管理目标、提升管理效率，用数据资产助力中小微企业高速发展。
+  tagline: 专注于规范中小微企业的财务核算、税务合规；通过业财融合达成管理目标、提升管理效率；用数据资产助力中小微企业高速发展。
   image:
     src: /img/icon/annyue-logo-256x256.ico
     alt: 安跃企服

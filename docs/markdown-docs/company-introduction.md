@@ -19,7 +19,7 @@ lang: zh-CN
 ## 创始人介绍
 
 <!-- <img  src="/img/company-introduction/image.png"  width="270" height = "380"  align = "right" /> -->
-![创始人图片](/img/company-introduction/image.png#pic_right)
+<!-- ![创始人图片](/img/company-introduction/image.png#pic_right) -->
 
 ### 刘文群（Ann Liu）
 
