@@ -1,7 +1,7 @@
 # 构建 VitePress 站点并将其部署到 GitHub Pages 的示例工作流程
 # 注意更改文件夹
 
-name: Deploy VitePress site to Pages
+name: Push site to Other repository
 
 on:
   # 在针对 `main` 分支的推送上运行。如果您
@@ -55,6 +55,10 @@ jobs:
           pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build / npm run docs:build
           touch docs/.vitepress/dist/.nojekyll
 
+          # 推送到<username>.github.io main中的一个文件夹
+          # 下面要发布的内容所在的文件夹写~/publ就能实现
+          # mkdir ~/publ
+          # cp -r docs/.vitepress/dist ~/publ
 
       # 自动推送到<username>.github.io仓库里
       - name: publish
