@@ -47,28 +47,29 @@ jobs:
           node-version: 18
           cache: pnpm # 或 pnpm / yarn / npm
           # cache-dependency-path: subdir/pnpm-lock.yaml # subdir/package-lock.json
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+
       - name: Install dependencies
         run: pnpm install # 或 pnpm install / yarn install / bun install / npm ci
       - name: Build with VitePress
         run: |
           pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build / npm run docs:build
           touch docs/.vitepress/dist/.nojekyll
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: docs/.vitepress/dist
+
 
       # 推送到<username>.github.io仓库里
       - name: publish
-        uses: s0/git-publish-subdir-action@master
         env:
-          REPO: # 目标库
-          BRANCH: # 目标分支
-          FOLDER: # 要发布的内容所在的文件夹
           # 将之前在Github账号内录入过公钥的SSH生成的密钥添加到当前仓库的 Secrets 中
           # 在 GitHub 仓库页面的 Settings > Secrets and variables > Actions > Repository secrets 中，点击 “New repository secret”，
-          # 然后将密钥名称设置为 PUBLISH_TOKEN，密钥值设置为之前在Github账号内录入过公钥的SSH生成的密钥。
-          SSH_PRIVATE_KEY: ${{ secrets.PUBLISH_TOKEN }}
+          # 然后将密钥名称设置为 ACCESS_TOKEN，密钥值设置为之前在Github账号内录入过公钥的SSH生成的密钥。
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          cd <target_dir> # 要发布的内容所在的文件夹
+          git init
+          git remote add target <target_repo_url> # 目标库
+          git pull
+          git add .
+          git commit -m "deploy"
+          git push target main # 目标分支
+
 
