@@ -56,20 +56,16 @@ jobs:
           touch docs/.vitepress/dist/.nojekyll
 
 
-      # 推送到<username>.github.io仓库里
+      # 自动推送到<username>.github.io仓库里
       - name: publish
+        uses: s0/git-publish-subdir-action@master
         env:
+          REPO: git@github.com:anyueservice/anyueservice.github.io.git # 目标库的ssh链接
+          BRANCH: main # 目标分支
+          FOLDER: docs/.vitepress/dist # 要发布的内容所在的文件夹
+
           # 将之前在Github账号内录入过公钥的SSH生成的密钥添加到当前仓库的 Secrets 中
           # 在 GitHub 仓库页面的 Settings > Secrets and variables > Actions > Repository secrets 中，点击 “New repository secret”，
-          # 然后将密钥名称设置为 ACCESS_TOKEN，密钥值设置为之前在Github账号内录入过公钥的SSH生成的密钥。
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          cd <target_dir> # 要发布的内容所在的文件夹
-          git init
-          git remote add target <target_repo_url> # 目标库
-          git pull
-          git add .
-          git commit -m "deploy"
-          git push target main # 目标分支
-
+          # 然后将密钥名称设置为 SSH_PRIVATE_KEY，密钥值设置为之前在Github账号内录入过公钥的SSH生成的密钥。
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
