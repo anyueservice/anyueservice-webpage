@@ -14,6 +14,10 @@ export default defineConfig({
   themeConfig: {
     logo: '/img/annyue-logo.svg',
     siteTitle: '深圳市安跃企业服务',
+    // 站点地图
+    sitemap: {
+      hostname: 'https://anyueservice.lowoneko.eu.org/'
+    },
 
     nav: [
       { text: '主页', link: '/' },
